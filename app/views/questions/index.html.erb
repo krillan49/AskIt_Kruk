@@ -9,5 +9,8 @@
 
   <p>
     <%= question.body %>
+    <br>
+    <%= link_to 'Show', question_path(question) %> |
+    <%= link_to 'Edit', edit_question_path(question) %> |
   </p>
 <% end %>
