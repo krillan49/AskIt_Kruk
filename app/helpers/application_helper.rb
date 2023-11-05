@@ -9,9 +9,9 @@ module ApplicationHelper
   #   link_to title, url, options
   # end
 
-  # def currently_at(current_page = '')
-  #   render partial: 'shared/menu', locals: {current_page: current_page}
-  # end
+  def currently_at(current_page = '')
+    render partial: 'shared/menu', locals: {current_page: current_page}
+  end
 
   def full_title(page_title = "")
     base_title = "AskIt"
