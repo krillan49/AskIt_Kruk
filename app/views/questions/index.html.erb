@@ -8,7 +8,7 @@
 <% @questions.each do |question| %>
   <article class="card mt-3">
     <div class="card-body">
-      <h4><%= question.title %></h2>
+      <h4><%= question.title %></h4>
 
       <section class="card-text">
         <time datetime="<%= question.formatted_created_at %>">
@@ -16,7 +16,7 @@
         </time>
 
         <div class="my-2">
-          <%= strip_tags question.body %>
+          <%= truncate strip_tags(question.body), length: 150, omission: '... (continued)' %>
         </div>
       </section>
 
