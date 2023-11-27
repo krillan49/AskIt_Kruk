@@ -47,6 +47,7 @@ gem "bootsnap", require: false
 
 gem 'pagy', '~> 6.2'
 gem 'draper', '~> 4.0'
+gem "valid_email2", '~> 5.1.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
