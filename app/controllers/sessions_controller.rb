@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by email: params[:email]
+    remember(user) if params[:remember_me] == '1'
     if user&.authenticate(params[:password])
       sign_in user
       flash[:success] = "Welcome back, #{current_user.name_or_email}!"
