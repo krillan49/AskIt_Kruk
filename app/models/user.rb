@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   attr_accessor :old_password, :remember_token
 
@@ -53,6 +55,6 @@ class User < ApplicationRecord
   end
 
   def password_presence
-    errors.add(:password, :blank) unless password_digest.present?
+    errors.add(:password, :blank) if password_digest.blank?
   end
 end
