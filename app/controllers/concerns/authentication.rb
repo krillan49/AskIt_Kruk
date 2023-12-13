@@ -3,7 +3,7 @@ module Authentication
 
   included do
     private
-  
+
     def current_user
       if session[:user_id].present?
         @current_user ||= User.find_by(id: session[:user_id]).decorate
@@ -23,14 +23,14 @@ module Authentication
     def require_authentication
       return if user_signed_in?
 
-      flash[:warning] = "You are not signed in!"
+      flash[:warning] = 'You are not signed in!'
       redirect_to root_path
     end
 
     def require_no_authentication
       return unless user_signed_in?
 
-      flash[:warning] = "You are already signed in!"
+      flash[:warning] = 'You are already signed in!'
       redirect_to root_path
     end
 
