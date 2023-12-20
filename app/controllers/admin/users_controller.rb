@@ -12,14 +12,14 @@ module Admin
       end
     end
 
-    # def create
-    #   if params[:archive].present?
-    #     UserBulkService.call params[:archive]
-    #     flash[:success] = 'Users imported!'
-    #   end
+    def create
+      if params[:archive].present?
+        UserBulkService.call params[:archive]
+        flash[:success] = 'Users imported!'
+      end
 
-    #   redirect_to admin_users_path
-    # end
+      redirect_to admin_users_path
+    end
 
     private
 
