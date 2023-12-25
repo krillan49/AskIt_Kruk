@@ -55,6 +55,7 @@ gem 'caxlsx', '~> 4'
 gem 'caxlsx_rails', '~> 0.6'
 gem 'rubyXL', '~> 3.4'
 gem 'activerecord-import', '~> 1.5'
+gem 'rails-i18n', '~> 7'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
