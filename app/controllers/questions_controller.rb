@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @pagy, @questions = pagy Question.includes(:user).order(created_at: :desc)
+    @pagy, @questions = pagy Question.all_by_tags(params[:tag_ids])
     @questions = @questions.decorate
   end
 

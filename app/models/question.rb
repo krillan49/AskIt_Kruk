@@ -21,4 +21,10 @@ class Question < ApplicationRecord
      
   #   questions.order(created_at: :desc)
   # end
+
+  scope :all_by_tags, ->(tag_ids) do
+      questions = includes(:user, :question_tags, :tags)
+      questions = questions.joins(:tags).where(tags: tag_ids) if tag_ids
+      questions.order(created_at: :desc)
+    end
 end
