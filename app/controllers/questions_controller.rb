@@ -30,6 +30,7 @@ class QuestionsController < ApplicationController
     @tags = Tag.where(id: params[:tag_ids]) if params[:tag_ids]
     @pagy, @questions = pagy Question.all_by_tags(@tags)
     @questions = @questions.decorate
+    @tags = Tag.all if !@tags # временное решение для формы селектора в индекс
   end
 
   def new

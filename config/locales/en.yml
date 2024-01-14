@@ -10,6 +10,8 @@ en:
       question:
         body: Body
         title: Title
+        tags: Tags
+        tag_ids: Tags
       user:
         created_at: Created at
         email: Email
@@ -18,10 +20,17 @@ en:
         password: Password
         password_confirmation: Password confirmation
         updated_at: Updated at
+        role: Role
     models:
       question: Question
   admin:
     users:
+      edit:
+        title: Edit user
+      destroy:
+        success: User deleted!
+      update:
+        success: User updated!
       create:
         success: Users imported!
       index:
@@ -47,6 +56,11 @@ en:
       success: Answer updated!
   en: English
   global:
+    user:
+      roles:
+        basic: Basic
+        moderator: Moderator
+        admin: Admin
     button:
       delete: Delete
       edit: Edit
@@ -80,6 +94,7 @@ en:
     index:
       new: New question
       title: Questions
+      search_by_tags: Search by tags
     new:
       title: New question
     show:
