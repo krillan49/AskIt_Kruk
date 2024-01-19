@@ -2,8 +2,8 @@
 
 class User < ApplicationRecord
   enum role: { basic: 0, moderator: 1, admin: 2 }, _suffix: :role
-  
-  attr_accessor :old_password, :remember_token
+
+  attr_accessor :old_password, :remember_token, :admin_edit
 
   has_secure_password validations: false
 
@@ -11,12 +11,13 @@ class User < ApplicationRecord
   has_many :answers, dependent: :destroy
 
   validate :password_presence
-  validate :correct_old_password, on: :update, if: -> { password.present? }
+  validate :correct_old_password, on: :update, if: -> { password.present? && !admin_edit }
   validates :password, confirmation: true, allow_blank: true,
                        length: { minimum: 8, maximum: 70 }
 
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
   validate :password_complexity
+  validates :role, presence: true
 
   before_save :set_gravatar_hash, if: :email_changed?
 
@@ -50,12 +51,13 @@ class User < ApplicationRecord
   end
 
   def digest(string)
-    cost = if ActiveModel::SecurePassword.min_cost
+    cost = if ActiveModel::SecurePassword
+              .min_cost
              BCrypt::Engine::MIN_COST
            else
              BCrypt::Engine.cost
            end
-    BCrypt::Password.create(string, cost:)
+    BCrypt::Password.create(string, cost: cost)
   end
 
   def correct_old_password

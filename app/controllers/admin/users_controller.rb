@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 module Admin
   class UsersController < ApplicationController
     before_action :require_authentication
+    before_action :set_user!, only: %i[edit update destroy]
 
     def index
       respond_to do |format|
@@ -15,9 +18,26 @@ module Admin
     def create
       if params[:archive].present?
         UserBulkService.call params[:archive]
-        flash[:success] = 'Users imported!'
+        flash[:success] = t '.success'
       end
 
+      redirect_to admin_users_path
+    end
+
+    def edit; end
+
+    def update
+      if @user.update user_params
+        flash[:success] = t '.success'
+        redirect_to admin_users_path
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @user.destroy
+      flash[:success] = t '.success'
       redirect_to admin_users_path
     end
 
@@ -35,6 +55,16 @@ module Admin
 
       compressed_filestream.rewind
       send_data compressed_filestream.read, filename: 'users.zip'
+    end
+
+    def set_user!
+      @user = User.find params[:id]
+    end
+
+    def user_params
+      params.require(:user).permit(
+        :email, :name, :password, :password_confirmation, :role
+      ).merge(admin_edit: true)
     end
   end
 end
