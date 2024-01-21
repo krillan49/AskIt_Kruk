@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class QuestionPolicy < ApplicationPolicy
+  def create?
+    false
+  end
   # def create?
   #   !user.guest?
   # end
