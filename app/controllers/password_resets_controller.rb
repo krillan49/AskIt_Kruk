@@ -6,16 +6,15 @@ class PasswordResetsController < ApplicationController
   # before_action :set_user, only: %i[edit update]
 
   def create
-    # @user = User.find_by email: params[:email]
+    @user = User.find_by email: params[:email]
 
-    # if @user.present?
-    #   @user.set_password_reset_token
-
+    if @user.present?
+      @user.set_password_reset_token
       PasswordResetMailer.with(user: @user).reset_email.deliver_later
-    # end
+    end
 
-    # flash[:success] = t '.success'
-    # redirect_to new_session_path
+    flash[:success] = t '.success'
+    redirect_to new_session_path
   end
 
   # def edit; end
