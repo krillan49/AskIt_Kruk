@@ -80,4 +80,5 @@ group :development do
   gem 'rubocop-rails', '~> 2.22', require: false
 
   gem 'bullet'
+  gem "letter_opener"
 end
