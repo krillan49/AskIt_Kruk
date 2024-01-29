@@ -2,7 +2,7 @@
 
 class PasswordResetsController < ApplicationController
   before_action :require_no_authentication
-  # before_action :check_user_params, only: %i[edit update]
+  before_action :check_user_params, only: %i[edit update]
   before_action :set_user, only: %i[edit update]
 
   def create
@@ -34,9 +34,9 @@ class PasswordResetsController < ApplicationController
   #   params.require(:user).permit(:password, :password_confirmation).merge(admin_edit: true)
   # end
 
-  # def check_user_params
-  #   redirect_to(new_session_path, flash: { warning: t('.fail') }) if params[:user].blank?
-  # end
+  def check_user_params
+    redirect_to(new_session_path, flash: { warning: t('.fail') }) if params[:user].blank?
+  end
 
   def set_user
     @user = User.find_by email: params[:user][:email],
