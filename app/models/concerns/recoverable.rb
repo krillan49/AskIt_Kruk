@@ -16,8 +16,8 @@ module Recoverable
     #   self.password_reset_token_sent_at = nil
     # end
 
-    # def password_reset_period_valid?
-    #   password_reset_token_sent_at.present? && Time.current - password_reset_token_sent_at <= 60.minutes
-    # end
+    def password_reset_period_valid?
+      password_reset_token_sent_at.present? && Time.current - password_reset_token_sent_at <= 60.minutes
+    end
   end
 end
