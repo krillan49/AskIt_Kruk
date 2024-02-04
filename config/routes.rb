@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
+require 'sidekiq/web'
+
+class AdminConstraint
+  def matches?(request)
+    user_id = request.session[:user_id] || request.cookie_jar.encrypted[:user_id]
+
+    User.find_by(id: user_id)&.admin_role?
+  end
+end
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq', constraints: AdminConstraint.new
+
   concern :commentable do
     resources :comments, only: %i[create destroy]
   end
@@ -22,7 +34,7 @@ Rails.application.routes.draw do
 
     resources :answers, except: %i[new show], concerns: :commentable
 
-    namespace :admin do
+    namespace :admin, constraints: AdminConstraint.new do
       resources :users, only: %i[index create edit update destroy]
     end
 
