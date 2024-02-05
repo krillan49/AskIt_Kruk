@@ -19,7 +19,7 @@ module Admin
 
     def create
       if params[:archive].present?
-        UserBulkService.call params[:archive]
+        UserBulkImportJob.perform_later# create_blob, current_user
         flash[:success] = t '.success'
       end
 
