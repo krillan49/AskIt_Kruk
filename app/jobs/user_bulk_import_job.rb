@@ -3,8 +3,7 @@
 class UserBulkImportJob < ApplicationJob
   queue_as :default
 
-  # def perform(archive_key, initiator)
-  def perform()
+  def perform(archive_key, initiator)
   #   UserBulkImportService.call archive_key
   # rescue StandardError => e
   #   Admin::UserMailer.with(user: initiator, error: e).bulk_import_fail.deliver_now
