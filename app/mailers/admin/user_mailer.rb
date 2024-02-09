@@ -15,12 +15,12 @@ module Admin
       mail to: @user.email, subject: I18n.t('admin.user_mailer.bulk_import_fail.subject')
     end
 
-    # def bulk_export_done
-    #   @user = params[:user]
-    #   stream = params[:stream]
+    def bulk_export_done
+      @user = params[:user]
+      stream = params[:stream]
 
-    #   attachments['result.zip'] = stream.read
-    #   mail to: @user.email, subject: I18n.t('admin.user_mailer.bulk_export_done.subject')
-    # end
+      attachments['result.zip'] = stream.read
+      mail to: @user.email, subject: I18n.t('admin.user_mailer.bulk_export_done.subject')
+    end
   end
 end
