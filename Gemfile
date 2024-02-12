@@ -49,7 +49,6 @@ gem 'bootsnap', require: false
 
 gem 'draper', '~> 4.0'
 gem 'pagy', '~> 6.2'
-gem 'valid_email2', '~> 5.1.1'
 gem 'rubyzip', '~> 2'
 gem 'caxlsx', '~> 4'
 gem 'caxlsx_rails', '~> 0.6'
