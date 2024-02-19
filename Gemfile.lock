@@ -162,6 +162,11 @@ GEM
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
+    propshaft (0.8.0)
+      actionpack (>= 7.0.0)
+      activesupport (>= 7.0.0)
+      rack
+      railties (>= 7.0.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -253,13 +258,6 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.19.0)
-    sprockets (4.2.1)
-      concurrent-ruby (~> 1.0)
-      rack (>= 2.2.4, < 4)
-    sprockets-rails (3.4.2)
-      actionpack (>= 5.2)
-      activesupport (>= 5.2)
-      sprockets (>= 3.0.0)
     sqlite3 (1.6.8-x64-mingw-ucrt)
     stringio (3.0.9)
     thor (1.3.0)
@@ -299,6 +297,7 @@ DEPENDENCIES
   jsbundling-rails
   letter_opener
   pagy (~> 6.2)
+  propshaft (~> 0.8)
   pry-rails
   puma (~> 5.0)
   pundit (~> 2.3)
@@ -310,7 +309,6 @@ DEPENDENCIES
   rubyXL (~> 3.4)
   rubyzip (~> 2)
   sidekiq (~> 7)
-  sprockets-rails
   sqlite3 (~> 1.4)
   tzinfo-data
   web-console
