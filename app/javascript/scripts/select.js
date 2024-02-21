@@ -9,7 +9,7 @@ document.addEventListener("turbo:before-cache", function() {
   })
 })
 
-document.addEventListener("turbo:load", function() {
+const rerender = function() {
   const i18n = Translations[document.querySelector('body').dataset.lang]
 
   document.querySelectorAll('.js-multiple-select').forEach((element) => {
@@ -46,4 +46,7 @@ document.addEventListener("turbo:load", function() {
     const el = new TomSelect(element, opts)
     selects.push(el)
   })
-})
+}
+
+document.addEventListener("turbo:load", rerender)
+document.addEventListener("turbo:render", rerender)
