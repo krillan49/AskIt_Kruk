@@ -3,13 +3,13 @@ import Translations from './i18n/select.json'
 
 let selects = []
 
-document.addEventListener("turbolinks:before-cache", function() {
+document.addEventListener("turbo:before-cache", function() {
   selects.forEach((select) => {
     select.destroy()
   })
 })
 
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener("turbo:load", function() {
   const i18n = Translations[document.querySelector('body').dataset.lang]
 
   document.querySelectorAll('.js-multiple-select').forEach((element) => {
